@@ -1,5 +1,5 @@
 # kakoune-show-matching-insert
-A highlighter for people who miss how Vim highlight's matching characters.
+A highlighter for people who miss how Vim highlights matching characters.
 
 ## Setup
 
