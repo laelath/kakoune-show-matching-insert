@@ -17,7 +17,7 @@ hook global WinSetOption matching_pairs=.* %{
     remove-hooks window curr-matching-pairs
     hook -always -group curr-matching-pairs window InsertChar %sh{printf '[%s]' $(echo $kak_opt_matching_pairs | sed 's/['\'' ]//g;s/[]\\]/\\&/g')} %{
         insert-highlight-matching
-        hook window -once -always InsertChar %sh{printf '[^%s]' $(echo $kak_opt_matching_pairs | sed 's/[]\\]/\\&/g')} %{
+        hook window -once -always InsertChar %sh{printf '[^%s]' $(echo $kak_opt_matching_pairs | sed 's/['\'' ]//g;s/[]\\]/\\&/g')} %{
             set-option window show_matching_insert "%val{timestamp}"
         }
     }
