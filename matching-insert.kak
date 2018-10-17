@@ -29,10 +29,10 @@ hook -always global ModeChange insert:.* %{
 
 hook -always global InsertDelete .* %{
     set-option window show_matching_insert "%val{timestamp}"
-    try %{
-        execute-keys -draft %sh{ printf 'h<a-k>[%s]<ret>' $(echo $kak_opt_matching_pairs | sed 's/['\'' ]//g;s/[]<>;\\]/\\&/g')}
+    evaluate-commands -draft %{ try %{
+        execute-keys %sh{ printf 'h<a-k>[%s]<ret>l' $(echo $kak_opt_matching_pairs | sed 's/['\'' ]//g;s/[]<>;\\]/\\&/g') }
         insert-highlight-matching
-    }
+    } }
 }
 
 hook -always global InsertMove .* %{
