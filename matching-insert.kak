@@ -5,7 +5,7 @@ declare-option -hidden range-specs show_matching_insert
 define-command -hidden insert-highlight-matching %{ evaluate-commands -draft %{ try %{
     set-option window show_matching_insert "%val{timestamp}"
     execute-keys \;<a-k> %sh{
-        printf '[^%s]' $(echo $kak_opt_matching_pairs | sed 's/'\''</<lt>/g;s/'\''>/<gt>/g;s/['\'' ]//g;s/[]\\]/\\&/g')
+        printf '[^%s]' $(echo $kak_opt_matching_pairs | sed 's/</lt/g;s/>/gt/g;s/[lg]t/<&>/g;s/['\'' ]//g;s/[]\\]/\\&/g')
     } <ret>
     evaluate-commands -itersel %{
         execute-keys hms\A|.\z<ret>
@@ -14,6 +14,8 @@ define-command -hidden insert-highlight-matching %{ evaluate-commands -draft %{ 
         }
     }
 } } }
+
+
 
 hook global WinSetOption matching_pairs=.* %{
     remove-hooks window curr-matching-pairs
