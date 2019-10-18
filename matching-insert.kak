@@ -31,7 +31,7 @@ hook global WinSetOption matching_pairs=.* %{
     }
 }
 
-hook -always global ModeChange insert:.* %{
+hook -always global ModeChange .*:insert:.* %{
     set-option window show_matching_insert "%val{timestamp}"
 }
 
